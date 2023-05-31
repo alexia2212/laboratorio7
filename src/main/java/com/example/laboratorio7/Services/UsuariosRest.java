@@ -17,8 +17,11 @@ public class UsuariosRest {
     UsuarioRepository usuarioRepository;
     @GetMapping("/listar")
     public List<Usuarios> listaDeUsuarios(){
+
         List<Usuarios> listaUsuarios = usuarioRepository.findAll();
         return listaUsuarios;
+
+
     }
 
     @PostMapping("/crear")
