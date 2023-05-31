@@ -1,12 +1,17 @@
 package com.example.laboratorio7.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Objects;
 
+@Getter
+@Setter
 @Entity
-public class Acciones {
+public class Acciones implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id")
@@ -17,52 +22,8 @@ public class Acciones {
     @Basic
     @Column(name = "fecha")
     private Timestamp fecha;
-    @Basic
-    @Column(name = "usuarios_id")
-    private int usuariosId;
+    @ManyToOne
+    @JoinColumn(name = "usuarios_id")
+    private Usuarios usuarios_id;
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public Double getMonto() {
-        return monto;
-    }
-
-    public void setMonto(Double monto) {
-        this.monto = monto;
-    }
-
-    public Timestamp getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(Timestamp fecha) {
-        this.fecha = fecha;
-    }
-
-    public int getUsuariosId() {
-        return usuariosId;
-    }
-
-    public void setUsuariosId(int usuariosId) {
-        this.usuariosId = usuariosId;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Acciones acciones = (Acciones) o;
-        return id == acciones.id && usuariosId == acciones.usuariosId && Objects.equals(monto, acciones.monto) && Objects.equals(fecha, acciones.fecha);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, monto, fecha, usuariosId);
-    }
 }
