@@ -1,90 +1,35 @@
 package com.example.laboratorio7.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Objects;
 
+@Getter
+@Setter
 @Entity
-public class Solicitudes {
+public class Solicitudes implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id")
     private int id;
     @Basic
     @Column(name = "solicitud_producto")
-    private String solicitudProducto;
+    private String solicitud_producto;
     @Basic
     @Column(name = "solicitud_monto")
-    private Double solicitudMonto;
+    private Double solicitud_monto;
     @Basic
     @Column(name = "solicitud_fecha")
-    private Timestamp solicitudFecha;
-    @Basic
-    @Column(name = "usuarios_id")
-    private int usuariosId;
+    private Timestamp solicitud_fecha;
+    @ManyToOne
+    @JoinColumn(name = "usuarios_id")
+    private Usuarios usuarios_id;
     @Basic
     @Column(name = "solicitud_estado")
-    private String solicitudEstado;
+    private String solicitud_estado;
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getSolicitudProducto() {
-        return solicitudProducto;
-    }
-
-    public void setSolicitudProducto(String solicitudProducto) {
-        this.solicitudProducto = solicitudProducto;
-    }
-
-    public Double getSolicitudMonto() {
-        return solicitudMonto;
-    }
-
-    public void setSolicitudMonto(Double solicitudMonto) {
-        this.solicitudMonto = solicitudMonto;
-    }
-
-    public Timestamp getSolicitudFecha() {
-        return solicitudFecha;
-    }
-
-    public void setSolicitudFecha(Timestamp solicitudFecha) {
-        this.solicitudFecha = solicitudFecha;
-    }
-
-    public int getUsuariosId() {
-        return usuariosId;
-    }
-
-    public void setUsuariosId(int usuariosId) {
-        this.usuariosId = usuariosId;
-    }
-
-    public String getSolicitudEstado() {
-        return solicitudEstado;
-    }
-
-    public void setSolicitudEstado(String solicitudEstado) {
-        this.solicitudEstado = solicitudEstado;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Solicitudes that = (Solicitudes) o;
-        return id == that.id && usuariosId == that.usuariosId && Objects.equals(solicitudProducto, that.solicitudProducto) && Objects.equals(solicitudMonto, that.solicitudMonto) && Objects.equals(solicitudFecha, that.solicitudFecha) && Objects.equals(solicitudEstado, that.solicitudEstado);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, solicitudProducto, solicitudMonto, solicitudFecha, usuariosId, solicitudEstado);
-    }
 }
