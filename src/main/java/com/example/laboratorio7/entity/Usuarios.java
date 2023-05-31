@@ -12,7 +12,7 @@ import java.util.Objects;
 @Setter
 @Entity
 
-public class Usuarios implements Serializable {
+public class  Usuarios implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id")

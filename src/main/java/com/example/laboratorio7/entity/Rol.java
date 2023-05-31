@@ -18,4 +18,4 @@ public class Rol {
     @Column(name = "nombre_rol")
     private String nombreRol;
 
-   }
+}
